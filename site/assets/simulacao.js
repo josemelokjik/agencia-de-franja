@@ -1,24 +1,12 @@
 import {beginExperiment, advanceExperiment, exportExperiment} from './simulacao-model.mjs';
 
 const byId = id => document.getElementById(id);
-const screens = ['consent-screen','challenge-screen','verification-screen','debrief-screen'];
+const screens = ['challenge-screen','verification-screen','debrief-screen'];
 let current = null;
 
 function show(screen) {
   for (const id of screens) byId(id).hidden = id !== screen;
 }
-function note(message) { byId('status').textContent = message; }
-
-byId('start').addEventListener('click', () => {
-  if (!byId('agreement').checked) {
-    note('Marque a confirmação de participação antes de começar.');
-    return;
-  }
-  current = beginExperiment(true, new Date().toISOString());
-  note('');
-  show('challenge-screen');
-});
-
 document.querySelectorAll('[data-decision]').forEach(button => {
   button.addEventListener('click', () => {
     if (!current) return;
@@ -30,7 +18,7 @@ document.querySelectorAll('[data-decision]').forEach(button => {
     byId('decision-result').textContent = current.outcome === 'intencao_instalar'
       ? 'Você demonstrou intenção de instalar um aplicativo a partir da solicitação simulada.'
       : 'Você optou por não prosseguir com a instalação simulada.';
-    byId('decision-count').textContent = String(current.events.length - 1);
+    byId('decision-count').textContent = String(current.events.length);
     show('debrief-screen');
   });
 });
@@ -50,9 +38,8 @@ byId('export').addEventListener('click', () => {
 });
 
 byId('restart').addEventListener('click', () => {
-  current=null;
-  byId('agreement').checked=false;
-  note('');
-  show('consent-screen');
+  current=beginExperiment(new Date().toISOString());
+  show('challenge-screen');
 });
-show('consent-screen');
+current=beginExperiment(new Date().toISOString());
+show('challenge-screen');
