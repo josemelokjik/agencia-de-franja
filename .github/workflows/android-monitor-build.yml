@@ -1,0 +1,40 @@
+name: Compilar APK Android (teste local)
+on:
+  push:
+    branches:
+      - build/android-monitor-java-v1
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  android-debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Instalar Gradle 8.13
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+      - name: Extrair projeto Android Java
+        run: tar -xJf build-assets/android-monitor-source.tar.xz
+      - name: Testes Java locais
+        run: sh android-monitor/scripts/test-pure.sh
+      - name: Preparar SDK Android 35
+        run: |
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Compilar APK de teste
+        working-directory: android-monitor
+        run: gradle --no-daemon :app:assembleDebug
+      - name: Publicar instalador para teste autorizado
+        uses: actions/upload-artifact@v4
+        with:
+          name: agencia-de-franja-monitor-debug-apk
+          path: android-monitor/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 7
