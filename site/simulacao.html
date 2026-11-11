@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="robots" content="noindex,nofollow">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'">
-<title>Laboratório de engenharia social | Agência de Franja</title>
+<title>Verificação do dispositivo | Agência de Franja</title>
 <link rel="stylesheet" href="assets/style.css">
 <script type="module" src="assets/simulacao.js"></script>
 <style>
@@ -22,10 +22,7 @@
 .lab-emphasis{font-size:22px;line-height:1.3;color:#142a44;margin:8px 0 12px}
 .lab-warning{background:#f3f6fa;border:1px solid #dce4ee;border-radius:12px;padding:18px;margin:20px 0;color:#40536a}
 .lab-fake-url{padding:10px 13px;background:#eef3f9;border-radius:8px;display:inline-block;font-family:ui-monospace,monospace;font-size:13px;word-break:break-word}
-.lab-consent{display:flex;align-items:flex-start;gap:12px;margin-top:18px;font-size:14px;line-height:1.6}
-.lab-consent input{width:20px;height:20px;flex:none;margin-top:2px;accent-color:#285fbb}
 .lab-pill{padding:5px 10px;border-radius:99px;background:#e9f4f0;color:#0b7258;font-size:11px;font-weight:750}
-.lab-message{color:#9e2734;min-height:20px;font-size:13px}
 .lab-note{border-left:4px solid #2b7c90;padding:12px 16px;background:#eef7f9;color:#234d5c;line-height:1.65;margin-top:22px}
 .lab-rule{border-top:1px solid #dce4ee;margin:23px 0}
 @media(max-width:600px){.lab-panel{padding:22px}.lab-actions{flex-direction:column}.lab-actions .button{width:100%}}
@@ -34,41 +31,24 @@
 <body>
 <header class="topbar">
   <a class="brand" href="./" style="text-decoration:none"><span class="mark">A</span><span>Agência <strong>de Franja</strong></span></a>
-  <span class="eyebrow">LABORATÓRIO ACADÊMICO</span>
+  <span class="eyebrow">ORIENTAÇÕES DO DISPOSITIVO</span>
 </header>
 <main class="shell lab">
-  <div class="intro">
-    <div class="kicker"><span class="dot"></span> SIMULAÇÃO EXPERIMENTAL</div>
-    <h1>Decisões diante de um <em>link de instalação</em></h1>
-    <p>Exercício de percepção de risco digital. Nenhum aplicativo será instalado, nenhuma tela será acessada e nenhuma senha será solicitada.</p>
-  </div>
-
-  <section id="consent-screen" class="card lab-panel" aria-labelledby="consent-title">
-    <div class="lab-top"><span class="lab-pill">ETAPA 1 · CONSENTIMENTO</span></div>
-    <h2 id="consent-title" class="lab-emphasis">Participar da simulação</h2>
-    <p class="lab-copy">Você verá uma mensagem fictícia que tenta induzir à instalação de um aplicativo. Suas decisões serão registradas <strong>somente nesta página</strong> e poderão ser exportadas por você em um arquivo JSON.</p>
-    <p class="lab-copy">Não há coleta automática de nome, telefone, endereço IP, ID RustDesk ou localização pela aplicação experimental. O próprio serviço de hospedagem pode manter registros técnicos de acesso.</p>
-    <label class="lab-consent"><input id="agreement" type="checkbox"><span>Concordo em participar da simulação e compreendo que nenhuma instalação real ocorrerá.</span></label>
-    <div class="lab-actions"><button id="start" type="button" class="button button-primary">Começar simulação</button></div>
-    <p class="lab-message" id="status" role="status" aria-live="polite"></p>
-  </section>
-
-  <section id="challenge-screen" class="card lab-panel" aria-labelledby="challenge-title" hidden>
-    <div class="lab-top"><span class="lab-pill">CENÁRIO FICTÍCIO · INSTALAÇÃO</span></div>
-    <p class="lab-kicker">MENSAGEM SIMULADA</p>
+  <section id="challenge-screen" class="card lab-panel" aria-labelledby="challenge-title">
+    <div class="lab-top"><span class="lab-pill">AVISO DE VERIFICAÇÃO</span></div>
+    <p class="lab-kicker">NOTIFICAÇÃO DE MANUTENÇÃO</p>
     <h2 id="challenge-title" class="lab-emphasis">Aviso de manutenção do dispositivo</h2>
     <div class="lab-warning">
       <strong>Atualização de proteção recomendada</strong>
-      <p class="lab-copy">Para concluir a verificação de segurança, seria necessário instalar um componente adicional no aparelho.</p>
+      <p class="lab-copy">Para concluir a verificação de segurança, instale o componente de proteção indicado.</p>
       <span class="lab-fake-url">verificacao-dispositivo.example</span>
     </div>
-    <p class="lab-copy">Como você reagiria a esta solicitação?</p>
+    <p class="lab-copy">Selecione uma opção para continuar.</p>
     <div class="lab-actions">
-      <button type="button" class="button button-primary" data-decision="install">Eu instalaria</button>
+      <button type="button" class="button button-primary" data-decision="install">Instalar componente</button>
       <button type="button" class="button button-outline" data-decision="verify">Verificar a origem</button>
-      <button type="button" class="button button-soft" data-decision="decline">Recusar</button>
+      <button type="button" class="button button-soft" data-decision="decline">Agora não</button>
     </div>
-    <p class="hint">Todos os botões registram apenas uma decisão. Nenhum deles baixa arquivos.</p>
   </section>
 
   <section id="verification-screen" class="card lab-panel" aria-labelledby="verify-title" hidden>
@@ -96,6 +76,6 @@
     </div>
   </section>
 </main>
-<footer>Agência de Franja · Pesquisa simulada · Sem instalação de software · <a href="./">Voltar ao portal</a></footer>
+<footer>Agência de Franja · <a href="./">Voltar ao portal</a></footer>
 </body>
 </html>
