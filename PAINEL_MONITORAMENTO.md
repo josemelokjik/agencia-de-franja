@@ -52,3 +52,23 @@ A tabela `monitor_daily` tem chave `(alias,day,package_name)` para importações
 - Não há transmissão automática a partir de celulares nem coleta de mensagens, conteúdo de tela ou atividade interna de aplicativos.
 - Use identificadores genéricos sem nomes, telefones ou e-mails.
 - O controlador deve verificar a base legal, informar os usuários, documentar a finalidade e restringir a retenção antes de qualquer uso com dados de clientes.
+
+
+## Migração D1 auditável
+
+O SQL de `worker/schema-monitor.sql` é **aditivo e idempotente**. A tabela `active_session` não é alterada.
+
+Foi acrescentado um teste SQLite que aplica a migração duas vezes, preserva uma sessão RustDesk e verifica chave composta, índice e limites. O rollback por exclusão da tabela nova é ensaiado **somente em banco descartável**.
+
+Para executar em D1, tenha uma sessão autenticada Cloudflare e o Wrangler instalado com `cd worker && npm ci && npx wrangler login`. Primeiro rode em banco de homologação, que já deve existir, com:
+
+```powershell
+powershell -File ./scripts/03-migrar-monitor-d1.ps1 -DatabaseName NOME_DO_D1_TESTE
+powershell -File ./scripts/03-migrar-monitor-d1.ps1 -DatabaseName NOME_DO_D1_TESTE -Apply
+```
+
+Após homologação, repita em produção com `-DatabaseName agencia-de-franja-sessoes`. O script não cria banco; exige correspondência exata em `d1 list`, confere ponto Time Travel, consulta sessões antes e depois e **só altera algo com `-Apply`**.
+
+**Importante:** restaurar o D1 a um momento anterior desfaz todas as gravações posteriores, inclusive atendimentos. Nunca executar restauração automaticamente. Por ser aditiva, uma reversão do Worker pode ocorrer mantendo `monitor_daily` sem prejuízo ao sistema anterior. Excluir a tabela nova requer operação separada e autorização específica.
+
+O projeto não possui credenciais Cloudflare no GitHub. Publicar a PR ou executar testes no GitHub não executa automaticamente a migração remota.
