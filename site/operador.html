@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10243c"><meta name="referrer" content="no-referrer">
+<title>Operador | Acesso Assistido</title>
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="config.js"></script><script defer type="module" src="assets/operator.js"></script>
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="mark">A</span><span>Acesso <strong>Assistido</strong></span></div><span class="eyebrow">PAINEL DO OPERADOR</span></header>
+<main class="shell operator-shell"><div class="intro"><div class="kicker"><span class="dot"></span> ESTAÇÃO DE ATENDIMENTO</div><h1>Central de <em>conexões.</em></h1><p>Crie um atendimento, compartilhe o código com a pessoa e receba seu ID sem enviar mensagens contendo credenciais.</p></div>
+<div class="dashboard-grid">
+<section class="card panel"><div class="panel-head"><div><div class="section-label">ETAPA 01</div><h2>Autenticação do operador</h2></div><span class="icon-bubble">◈</span></div><label for="admin-token">Token privado do Worker</label><input id="admin-token" type="password" autocomplete="off" placeholder="Informe o token configurado no Worker"><p class="hint">O token fica apenas na memória desta página e não é publicado no GitHub.</p><button class="button button-primary full" id="login">Conectar ao painel</button><div class="message" id="login-status" role="status"></div></section>
+<section class="card panel"><div class="panel-head"><div><div class="section-label">ETAPA 02</div><h2>Solicitação de atendimento</h2></div><span class="icon-bubble">⌁</span></div><div class="status-line"><span class="status-indicator" id="status-dot"></span><strong id="state-label">Não conectado</strong><small id="state-description">Autentique-se primeiro.</small></div><button id="create" disabled class="button button-primary full">Criar atendimento</button><div class="code-box hidden" id="code-section"><span>CÓDIGO TEMPORÁRIO</span><strong id="pair-code">—</strong><button id="copy-code" class="button button-soft" type="button">Copiar código</button></div><label for="public-link">Link único da pessoa atendida</label><div class="field-row"><input id="public-link" readonly><button id="copy-link" class="button button-soft" type="button">Copiar</button></div><p class="hint">O código expira em 20 minutos. Somente uma solicitação pode ficar ativa por vez.</p></section>
+<section class="card panel span-2"><div class="panel-head"><div><div class="section-label">ETAPA 03</div><h2>Conexão no RustDesk Windows</h2></div><span class="icon-bubble">▣</span></div><div id="waiting-message" class="empty-state">Aguardando criação de uma solicitação.</div><div id="ready-section" class="ready-panel hidden"><div><span class="section-label">ID RECEBIDO DO ANDROID</span><strong class="remote-id" id="remote-id">—</strong><p>Abra o RustDesk no Windows, informe este ID e solicite conexão. A pessoa deverá aprovar no Android.</p></div><button id="copy-id" class="button button-primary">Copiar ID</button></div><div class="action-footer"><button id="refresh" class="button button-outline" disabled>Atualizar</button><button id="close" class="button button-danger" disabled>Encerrar solicitação</button></div><div class="message" id="panel-message" role="status" aria-live="polite"></div></section>
+</div>
+<div class="privacy operator-note"><span class="shield">✓</span><div><strong>Separação de funções</strong><p>O portal troca apenas o ID e o estado da solicitação. A sessão remota ocorre exclusivamente entre os clientes oficiais RustDesk. Não armazene nem compartilhe senhas nesse portal.</p></div></div>
+</main><footer>Operador · Uso exclusivo em dispositivos com autorização explícita</footer>
+</body>
+</html>

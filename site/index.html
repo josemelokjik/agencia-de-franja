@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10243c"><meta name="referrer" content="no-referrer">
+<title>Conectar Android | Acesso Assistido</title>
+<link rel="stylesheet" href="assets/style.css">
+<script defer src="config.js"></script><script defer type="module" src="assets/mobile.js"></script>
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="mark">A</span><span>Acesso <strong>Assistido</strong></span></div><span class="eyebrow">CONEXÃO SOB CONSENTIMENTO</span></header>
+<main class="shell mobile-shell">
+  <div class="intro"><div class="kicker"><span class="dot"></span> SUPORTE REMOTO ANDROID</div><h1>Vamos conectar<br><em>seu celular?</em></h1><p>Você decide quando compartilhar a tela e pode interromper o atendimento a qualquer momento.</p></div>
+  <div class="card steps">
+    <div class="step"><span class="step-number">01</span><div><h2>Instale o RustDesk</h2><p>Utilize exclusivamente a versão oficial no Android. Se já estiver instalado, avance.</p><a class="button button-outline" href="https://rustdesk.com/download" target="_blank" rel="noopener noreferrer">Ver instalação oficial <span aria-hidden="true">↗</span></a></div></div>
+    <div class="step"><span class="step-number">02</span><div><h2>Autorize o controle remoto</h2><p>Abra o RustDesk, acesse <strong>Compartilhar tela</strong> e habilite <strong>Captura de tela</strong> e <strong>Controle de entrada</strong>. Inicie o serviço.</p><div class="note">Não habilite transferência de arquivos ou áudio. As permissões de captura e acessibilidade são concedidas diretamente nas telas do Android.</div></div></div>
+    <div class="step"><span class="step-number">03</span><div><h2>Vincule o atendimento</h2><p>Informe o código fornecido pelo operador. No RustDesk, copie seu ID e retorne a esta página.</p>
+      <form id="connect-form" class="form-stack" novalidate>
+      <label for="pair-code">Código do atendimento <small>10 caracteres</small></label>
+      <input id="pair-code" name="pair" inputmode="text" type="text" maxlength="13" autocomplete="off" autocapitalize="characters" placeholder="ABCDE-FGHIJ" required>
+      <label for="rustdesk-id">Seu ID no RustDesk</label>
+      <div class="field-row"><input id="rustdesk-id" name="id" type="text" maxlength="64" autocomplete="off" spellcheck="false" placeholder="ID exibido no aplicativo" required><button type="button" class="button button-soft" id="paste-id" title="Ler texto da área de transferência">Colar ID</button></div>
+      <label class="checkline"><input type="checkbox" id="consent" required><span>Eu solicitei este atendimento e autorizo o envio do meu ID RustDesk ao operador. Sei que ainda precisarei aprovar a conexão no aplicativo.</span></label>
+      <button type="submit" class="button button-primary full" id="submit">Enviar ID ao operador</button>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+      </form>
+    </div></div>
+  </div>
+  <section class="privacy"><span class="shield">✓</span><div><strong>Você mantém o controle.</strong><p>Este portal transmite apenas seu ID após autorização. Não solicita senha do RustDesk, não acessa a tela e não instala programas automaticamente. O controle só começa no RustDesk, com sua aprovação.</p></div></section>
+</main>
+<footer>Versão MVP · Acesso assistido · Sem transferência de arquivos</footer>
+</body>
+</html>

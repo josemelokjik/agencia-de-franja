@@ -1,0 +1,18 @@
+AGENCIA DE FRANJA — PUBLICACAO NO WINDOWS
+
+O repositorio GitHub josemelokjik/agencia-de-franja ja existe e esta vazio.
+
+1) Extraia o ZIP e instale Node.js LTS e Git for Windows, se necessario.
+2) Abra PowerShell na pasta raiz extraida.
+3) Execute o script 01 (abre login Cloudflare e pede segredo privado):
+   powershell -ExecutionPolicy Bypass -File .\scripts\01-configurar-cloudflare.ps1
+4) Execute o script 02 (autentica no GitHub conforme necessario):
+   powershell -ExecutionPolicy Bypass -File .\scripts\02-publicar-github.ps1
+5) No GitHub: Settings > Pages > Build and deployment > Source: GitHub Actions.
+6) Em Actions, confira o workflow Publicar GitHub Pages. Se falhar por Pages desativado, reexecute o workflow apos ativar.
+7) Verifique o site: https://josemelokjik.github.io/agencia-de-franja/
+8) TESTE SOMENTE NO SEU ANDROID OU COM CONSENTIMENTO: instale RustDesk, autorize captura/controle, copie ID,
+   informe codigo no portal e aprove a conexao no celular.
+
+Nenhum segredo deve entrar no GitHub. O script 01 salva somente a URL publica do Worker em site/config.js.
+Worker e D1 dependem da sua conta Cloudflare e dos limites do plano gratuito.

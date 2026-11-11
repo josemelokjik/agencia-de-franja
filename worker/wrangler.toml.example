@@ -1,0 +1,16 @@
+name = "agencia-de-franja-bridge"
+main = "src/index.mjs"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[vars]
+# Exemplo: https://josemelokjik.github.io (origem, sem caminho/repositório)
+ALLOWED_ORIGIN = "https://josemelokjik.github.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "agencia-de-franja-sessoes"
+database_id = "SUBSTITUIR-PELO-ID-DA-D1"
+
+[triggers]
+crons = ["0 * * * *"]
