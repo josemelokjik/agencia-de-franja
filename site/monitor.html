@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src https:; object-src 'none'; form-action 'none'; base-uri 'none'">
+  <title>Agência de Franja · Relatórios de uso</title>
+  <link rel="stylesheet" href="assets/monitor.css">
+  <script defer src="config.js"></script>
+  <script defer type="module" src="assets/monitor.js"></script>
+</head>
+<body>
+<header class="header"><div class="brand"><span class="logo">AF</span><div><b>Agência de Franja</b><small>Painel de relatórios de utilização</small></div></div><span class="indicator">Importação manual</span></header>
+<main>
+  <section class="intro"><p class="eyebrow">Monitoramento autorizado · relatórios agregados</p><h1>Central de utilização</h1><p>Consulte remotamente resumos enviados pelo operador. O painel não acompanha telas ao vivo nem recebe registros automaticamente dos celulares.</p></section>
+  <section class="card login" id="login-section"><h2>Autenticação administrativa</h2><p>Utilize o token privado do Worker. Ele permanece apenas na memória desta aba.</p>
+    <div class="inline"><label class="grow">Token administrativo<input id="token" type="password" autocomplete="off" placeholder="Token privado" /></label><button class="primary" id="login">Conectar</button></div><p class="status" id="login-status" role="status" aria-live="polite"></p>
+  </section>
+  <div id="dashboard" hidden>
+    <section class="metrics" aria-label="Indicadores gerais">
+      <div class="card metric"><span>Dispositivos com relatórios</span><strong id="count-devices">0</strong></div>
+      <div class="card metric"><span>Aplicativos registrados</span><strong id="count-apps">0</strong></div>
+      <div class="card metric"><span>Aberturas registradas</span><strong id="count-opens">0</strong></div>
+      <div class="card metric"><span>Última importação</span><strong class="date" id="latest-date">—</strong></div>
+    </section>
+    <section class="card"><div class="section-head"><div><h2>Importar relatório do Android</h2><p>Selecione o JSON exportado pelo próprio aparelho. Antes do envio, o navegador reduz os eventos a contagens diárias.</p></div></div>
+      <div class="inline"><label>Identificador não pessoal<input id="device-alias" value="dispositivo-01" placeholder="dispositivo-01" maxlength="43" /></label><label class="grow">Arquivo JSON<input id="report-file" type="file" accept="application/json,.json" /></label></div>
+      <div class="actions"><button id="preview" class="secondary">Pré-visualizar dados</button><button id="submit" class="primary" disabled>Enviar somente resumos</button></div>
+      <p class="status" id="import-status" role="status" aria-live="polite"></p><div id="preview-area" hidden><h3>Prévia do envio</h3><p id="preview-text"></p></div>
+    </section>
+    <section class="card"><div class="section-head"><div><h2>Registros consolidados</h2><p>As métricas refletem apenas os arquivos importados. Não são dados em tempo real.</p></div><button class="secondary" id="refresh">Atualizar</button></div>
+      <div class="inline"><label>Filtrar por dispositivo<select id="device-filter"><option value="">Todos</option></select></label><button id="delete" class="danger" disabled>Apagar dados deste dispositivo</button></div>
+      <div class="table-wrap"><table><thead><tr><th>Dispositivo</th><th>Dia (UTC)</th><th>Aplicativo</th><th>Aberturas</th></tr></thead><tbody id="rows"><tr><td colspan="4">Nenhum relatório importado.</td></tr></tbody></table></div>
+      <p class="status" id="data-status" role="status" aria-live="polite"></p>
+    </section>
+  </div>
+  <aside class="privacy"><b>Privacidade</b><p>Somente identificadores genéricos, nomes técnicos de aplicativos e contagens por dia são armazenados no Cloudflare D1 por até 30 dias. Nenhuma mensagem, gravação ou horário individual é enviado. O monitoramento no celular depende das permissões e informações apresentadas ao usuário.</p></aside>
+</main>
+<footer><a href="./operador.html">Atendimento RustDesk</a> · Agência de Franja</footer>
+</body>
+</html>
