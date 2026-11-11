@@ -1,5 +1,5 @@
 // Modelo puro: nenhuma chamada de rede ou acesso ao dispositivo.
-export const SCENARIO_ID = 'solicitacao-instalacao-v1';
+export const SCENARIO_ID = 'solicitacao-instalacao-v2';
 const ACTIONS = new Set(['install', 'verify', 'decline']);
 
 function ensureTimestamp(value) {
@@ -9,8 +9,7 @@ function ensureTimestamp(value) {
   return value;
 }
 
-export function beginExperiment(consented, at) {
-  if (consented !== true) throw new Error('Consentimento obrigatório.');
+export function beginExperiment(at) {
   const timestamp = ensureTimestamp(at);
   return {
     scenarioId: SCENARIO_ID,
@@ -18,7 +17,7 @@ export function beginExperiment(consented, at) {
     startedAt: timestamp,
     endedAt: null,
     outcome: null,
-    events: [{ action: 'consent', at: timestamp }],
+    events: [],
   };
 }
 
