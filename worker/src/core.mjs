@@ -1,4 +1,5 @@
 import { D1SessionStore } from './storage.mjs';
+import {handleMonitorRoute} from './monitor-core.mjs';
 
 const CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const TTL_MS = 20 * 60 * 1000;
@@ -37,7 +38,7 @@ function respond(data,status, origin) {
     'Cache-Control': 'no-store',
     'X-Content-Type-Options': 'nosniff',
     'Referrer-Policy': 'no-referrer',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Authorization, Content-Type',
     'Vary': 'Origin',
   };
@@ -60,6 +61,7 @@ export async function handleRequest(request, env) {
   if (request.method === 'OPTIONS') return respond(null, 204, origin);
   const path = new URL(request.url).pathname.replace(/\/$/,'') || '/';
   if (path==='/v1/health' && request.method === 'GET') return respond({status:'ok'}, 200, origin);
+  if (path.startsWith('/v1/monitor/')) return handleMonitorRoute(request,env,origin,path,{validAdmin,respond});
   if (!env.STORE && !env.DB) return respond({error:'Banco de dados não configurado.'},503,origin);
   const storage = env.STORE || new D1SessionStore(env.DB);
   const now = Date.now();

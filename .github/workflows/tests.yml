@@ -16,3 +16,4 @@ jobs:
           node-version: 22
       - run: node --test worker/test/*.test.mjs
       - run: node --test tests/*.test.mjs
+      - run: python3 -m unittest discover -s worker/test -p 'test_d1_*.py' -v
