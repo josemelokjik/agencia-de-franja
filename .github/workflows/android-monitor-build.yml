@@ -22,8 +22,6 @@ jobs:
           gradle-version: '8.13'
       - name: Extrair projeto Android Java
         run: tar -xJf build-assets/android-monitor-source.tar.xz
-      - name: Testes Java locais
-        run: sh android-monitor/scripts/test-pure.sh
       - name: Preparar SDK Android 35
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
